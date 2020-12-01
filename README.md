@@ -1,19 +1,5 @@
-# Shower Presentation Template
-![](https://github.com/shower/shower/workflows/Test/badge.svg)
-
-<img src="pictures/logo.png" width="250" alt="Shower logo">
-
-> Shower ['ʃəuə] noun. A person or thing that shows.
-
-1. Built on HTML, CSS and vanilla JavaScript.
-2. Works in all modern browsers.
-3. Themes are separated from engine.
-4. Fully keyboard accessible.
-5. Printable to PDF.
-
-[See it in action](https://shwr.me/). Includes [Ribbon](https://github.com/shower/ribbon/) and [Material](https://github.com/shower/material/) themes, and [core](https://github.com/shower/core/) with plugins.
-
-Follow [@shower_me](https://twitter.com/shower_me) for support and updates, [file an issue](https://github.com/shower/shower/issues/new) if you have any.
+# Docker presentation
+[Based on Shower](https://github.com/shower)
 
 ## Quick Start
 

@@ -46,20 +46,19 @@
             <li class="next">Как работает Docker</li>
             <li class="next">Делаем приложение с Docker</li>
             <li class="next">Когда контейнеров много</li>
-            <li class="next">Безопасность</li>
+            <li class="next">Безопасность и Docker</li>
         </ol>
+        <img class="place center right" height="40%" src="pictures/content_meme.jpg" alt="content meme">
     </section>
 
     <section class="slide" id="slide3">
         <h2>Контейнеры vs виртуальные машины</h2>
-            <p>Виртуальные машины - много операционных систем на одном хост-сервере, управляемых гипервизором (Microsoft Hyper-V, VMware).</p>
-            <img class="place bottom center" height="50%" src="pictures/hyperv.png" alt="Hyper-V">
+        <img class="place bottom center" height="75%" src="pictures/hyperv.png" alt="Hyper-V">
     </section>
 
     <section class="slide" id="slide4">
         <h2>Контейнеры vs виртуальные машины</h2>
-            <p>Контейнеры - одна ОС(с системой OpenVZ, Systemd-nspawn, LXC) и много изолированных сред для запуска приложений</p>
-            <img class="place bottom center" height="50%" src="pictures/containers.png" alt="Container">
+        <img class="place bottom center" height="70%" src="pictures/containers.png" alt="Container">
     </section>
 
     <section class="slide" id="slide5">
@@ -70,34 +69,34 @@
             <li><a href="https://habr.com/ru/company/selectel/blog/279281/" target="_blank">namespaces</a></li>
             <li><a href="https://habr.com/ru/company/selectel/blog/303190/" target="_blank">cgroups</a></li>
         </ul>
-        <img class="place bottom right" height="50%" src="pictures/lxc.png" alt="Container">
     </section>
 
     <section class="slide" id="slide6">
         <h2>Эра контейнеров</h2>
         <ul>
-            <li>Один процесс — один контейнер.</li>
-            <li>Все нужные процессу зависимости доставляем в его контейнер. Это требует распиливать монолиты на микросервисы.</li>
-            <li>Чем меньше образ, тем лучше — меньше возможных уязвимостей, быстрее раскатывается и так далее.</li>
-            <li>Инстансы становятся эфемерными.</li>
+            <li class="next">Один процесс — один контейнер.</li>
+            <li class="next">Все нужные процессу зависимости упаковываются в контейнер.</li>
+            <li class="next">Чем меньше образ, тем лучше — меньше возможных уязвимостей, быстрее раскатывается и т.д.</li>
+            <li class="next">Инстансы становятся эфемерными.</li>
         </ol>
     </section>
 
     <section class="slide" id="slide7">
         <h2>Как работает Docker</h2>
         <ul>
-            <li>Docker Daemon — то самое Container Engine; запускает контейнеры.</li>
-            <li>Docker CLI — утилита по управлению Docker.</li>
-            <li>Dockerfile — инструкция для сборки образа.</li>
-            <li>Image — образ, из которого раскатывается контейнер.</li>
-            <li>Container.</li>
-            <li>Docker registry — хранилище образов.</li>
+            <li>Docker Daemon</li>
+            <li>Docker CLI</li>
+            <li>Dockerfile</li>
+            <li>Image</li>
+            <li>Container</li>
+            <li>Docker registry</li>
         </ul>
-        <img class="place bottom right" height="35%" src="pictures/docker_flow.png" alt="Container">
+        <img class="place center right" height="50%" src="pictures/docker_flow.png" alt="Container">
     </section>
 
     <section class="slide" id="slide8">
         <h2>Основные команды</h2>
+        <p class="note"><code>docker run -d --name myredis redis</code></p>
         <ul>
             <li>docker ps — показать контейнеры на Docker-хосте.</li>
             <li>docker images — показать образы, скачанные локально.</li>
@@ -109,7 +108,6 @@
             <li>docker logs [name] — логи контейнера</li>
             <li>docker start/stop/restart [name] — работа с контейнером</li>
         </ul>
-            <p class="note"><code>docker run -d --name myredis redis</code></p>
         <style>
             #slide8 li {
                 font-size: 18px;
@@ -119,27 +117,21 @@
 
     <section class="slide" id="slide9">
         <h2>Продвинутые команды</h2>
-        <p>Можно использовать переменные как в shell</p>
-        <ul>
-            <li>Остановить и удалить все контейнеры:
-                <pre><code>docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)</code></pre>
-            </li>
-            <li>
-                Удалить все образы:
-                <pre><code>docker rmi $(docker images -q)</code></pre>
-            </li>
-        </ul>
+        <p>Остановить и удалить все контейнеры:</p>
+        <p><code>docker stop $(docker ps -a -q)</code><br>
+        <code>docker rm $(docker ps -a -q)</code></p>
+        <p>Удалить все образы:</p>
+        <code>docker rmi $(docker images -q)</code>
     </section>
 
     <section class="slide" id="slide10">
         <h2>Так зачем он нужен?</h2>
         <ul>
-            <li>Супер-песочница. Собрали, поиграли, выкинули</li>
-            <li>Удобный способ доставки приложений на сервера. Все зависимости в комплекте</li>
-            <li>Нет кофликтов версии в пределах хост-машины</li>
-            <li>Удобный способ обновления - просто обнови контейнер</li>
-            <li>Экономный - можно квотировать потребление ресурсов каждым контейнером</li>
+            <li class="next">Супер-песочница. Собрали, поиграли, выкинули.</li>
+            <li class="next">Удобный способ доставки приложений на сервера.</li>
+            <li class="next">Нет кофликтов версии в пределах хост-машины.</li>
+            <li class="next">Легко обновлять. Просто вытащи новый контейнер.</li>
+            <li class="next">Экономный. Можно квотировать потребление ресурсов каждым контейнером.</li>
         </ul>
     </section>
 
@@ -147,62 +139,68 @@ docker rm $(docker ps -a -q)</code></pre>
         <h2>Соберем простое приложение в Docker...</h2>
         <ol>
             <li>Инициализация проекта, добавление зависимостей, пишем код</li>
-            <li>Добавляем Dockerfile</li>
-            <li><code>docker build -t sample_project .</code></li>
-            <li><code>docker run -d -p 8090:3000 sample_project</code></li>
-            <li>Пробрасывает папку внутрь<code>docker run -d -p 8090:3000 -v "$(pwd)"/:/usr/src/app sample_project</code></li>
-            <li>Вуаля!</li>
+            <li class="next">Добавляем Dockerfile</li>
+            <li class="next"><code>docker build -t sample_project .</code></li>
+            <li class="next"><code>docker run -d -p 8090:3000 sample_project</code></li>
+            <li class="next">
+                Пробрасывает папку внутрь<br>
+                <code>docker run -d -p 8090:3000 -v "$(pwd)"/:/usr/src/app sample_project</code>
+            </li>
+            <li class="next">Вуаля!</li>
         </ol>
     </section>
 
     <section class="slide" id="slide12">
         <h2>Урощаем работу с docker-compose</h2>
-        <ol>
-            <li>Упрощает работу с контейнерами</li>
-            <li>Упрощает запуск нескольких микросервисов</li>
-            <li>Для запуска сборки фронт-бек надо знать одну команду*<code>docker-compose up --build</code></li>
-            <li>Вуаля!</li>
-        </ol>
+        <ul>
+            <li class="next">с одиночными контейнерами</li>
+            <li class="next">и с несколькими микросервисами</li>
+            <li class="next">
+                Для запуска сборки "фронт-бек-что угодно" часто надо знать одну команду<br>
+                <code>docker-compose up</code>
+            </li>
+            <li class="next">Вуаля!</li>
+        </ul>
     </section>
 
     <section class="slide" id="slide13">
         <h2>Настройка ENV окружения</h2>
-        <p>Можно передавать через</p>
-        <ol>
+        <ul>
             <li><code>ARG/ENV</code> внутри Dockerfile</li>
-            <li>ключ <code>-e</code>: <code>docker run -e REDIS_NAMESPACE='staging'</code></li>
-            <li>ключ <code>--env-file</code>: <code>docker run --env-file ./.env</code></li>
+            <li>ключ <code>-e</code></li>
+            <li>ключ <code>--env-file</code></li>
             <li>перечисление в Docker-compose</li>
             <li>ссылка на файл в Docker-compose</li>
-        </ol>
-        <img class="place bottom right" height="35%" src="pictures/docker_environment_build_args.png" alt="Container">
+        </ul>
+        <img class="place center right" height="60%" src="pictures/docker_environment_build_args.png" alt="Container">
     </section>
 
     <section class="slide" id="slide14">
         <h2>Управление даными в контейнере</h2>
-        <ul>
-            <li>временное хранение в слое контейнера</li>
+        <ol>
+            <li>Временное хранение в слое контейнера.</li>
             <li>
-                постояное хранение
+                Постояное хранение:
                 <ul>
                     <li>простое монтирование папки</li>
                     <li>тома с данными</li>
                     <li>тома-контейнеры</li>
                 </ul>
             </li>
-        </ul>
+        </ol>
     </section>
 
     <section class="slide" id="slide15">
         <h2>Пример приложения с Docker-compose</h2>
-        <p>Или как можно поднять весь сервис (фронтенд/бекенд/бд) одной командой</p>
+        <p>Или как можно поднять весь сервис одной командой</p>
+        <img class="place bottom center" height="40%" src="pictures/automate_meme.jpg" alt="automate meme">
     </section>
 
     <section class="slide" id="slide16">
         <h2>Оптимизация образов</h2>
         <ul>
             <li>минимальный базовый образ (обычно alpine, но есть тонкости)</li>
-            <li>группировка команд команды* <i>&&</i> и <i>\</i></li>
+            <li>группировка команд* <i>&&</i> и <i>\</i></li>
             <li>добавление <i>.dockerignore</i></li>
             <li>использование multi-stage сборок</li>
             <li>исключение ненужных библиотек и dev-зависимостей</li>
@@ -242,8 +240,8 @@ COPY --from=build /app/build /usr/share/nginx/html
 
     <section class="slide" id="slide18">
         <h2>Репозитории образов</h2>
-        <p>Можно не только скачивать базовые образы, но и хранить свои в Docker Hub(своем registry)</p>
-        <code>docker login --username=name --email=m@c.com</code><br>
+        <p>Можно хранить свои образы в Docker Hub или Registry</p>
+        <code>docker login --username=name --email=name@mail.com</code><br>
         <code>docker push your-hub-username/image-name</code>
     </section>
 
@@ -258,19 +256,23 @@ COPY --from=build /app/build /usr/share/nginx/html
 
     <section class="slide" id="slide20">
         <h2>Тестирование с Docker</h2>
-        <p>Плюсы, как и при разработке:</p>
         <ul>
             <li>изолированность</li>
             <li>стабильность</li>
             <li>переносимость</li>
             <li>удобный CI</li>
+            <li>просто автоматизировать</li>
         </ul>
     </section>
 
     <section class="slide" id="slide21">
         <h2>Деплой с Docker</h2>
-        <code>docker login -e username@mail.com -u username -p userpass</code><br>
-        <code>docker push username/your-docker-app:0.1.0.</code><br>
+        <p>на машине разработчика:</p>
+        <p>
+            <code>docker login -e username@mail.com -u username -p userpass</code><br>
+            <code>docker push username/your-docker-app:0.1.0.</code>
+        </p>
+        <p>на прод-машине:</p>
         <code>docker run -d --rm -p 80:3000 username/your-docker-app:0.1.0.</code><br>
         <style>
             #slide21 code{
@@ -287,7 +289,7 @@ COPY --from=build /app/build /usr/share/nginx/html
         <code>docker logs container --follow</code><br>
         <code>docker logs container | grep -i error</code><br>
         <code>docker inspect --format='{{.LogPath}}' container</code><br>
-        <code>docker stats couchbase</code><br>
+        <code>docker stats container</code><br>
         <style>
             #slide22 code{
                 font-size: 22px;
@@ -297,12 +299,14 @@ COPY --from=build /app/build /usr/share/nginx/html
 
     <section class="slide" id="slide23">
         <h2>Драйвер логов</h2>
-        <p>По умолчанию уничтожение контейнера приводит к удалению логов. Если нужны логи, укажите опцию --log-driver:</p>
+        <p>По умолчанию уничтожение контейнера приводит к удалению логов.</p>
+        <p>Пользуйтесь <code>--log-driver:</code>*</p>
         <code>docker run --log-driver=journald</code><br>
         <code>
             journalctl -u docker CONTAINER_NAME=mycontainer_name<br>
             journalctl -u docker CONTAINER_TAG=mytag
         </code>
+        <p class="note">* не забывайте делать ротацию логов!)</p>
         <style>
             #slide23 code{
                 font-size: 22px;
@@ -322,28 +326,22 @@ COPY --from=build /app/build /usr/share/nginx/html
 
     <section class="slide" id="slide25">
         <h2>Docker Swarm</h2>
-        <p>Docker Swarm Cluster состоит из нод, которые делят на два типа:</p>
-        <ul>
-            <li>Управляющая нода (Manager)</li>
-            <li>Рабочая нода (Worker)</li>
-        </ul>
-        <img class="place bottom right" height="35%" src="pictures/swarm-diagram.png" alt="docker swarm">
+        <img class="place bottom center" height="70%" src="pictures/swarm-diagram.png" alt="docker swarm">
     </section>
 
     <section class="slide" id="slide26">
         <h2>Kubernetes</h2>
-        <p>Структура похожа на Swarm, но сложнее внутри</p>
         <ul>
-            <li>Умеет работать не только с Docker контейнерами (+ rkt, CRI-O)</li>
-            <li>Автомасштабирование ресурсов под нагрузку</li>
-            <li>выше порог вхождения</li>
+            <li>Больше контейнеров(+ rkt, CRI-O).</li>
+            <li>Автомасштабирование ресурсов.</li>
+            <li>Выше порог вхождения.</li>
         </ul>
-        <img class="place bottom right" height="40%" src="pictures/k8s.png" alt="kubernetes">
+        <img class="place center right" height="60%" src="pictures/k8s.png" alt="kubernetes">
+        <img class="place bottom left next" height="35%" src="pictures/k8s_meme.jpg" alt="k8s meme">
     </section>
 
     <section class="slide" id="slide27">
         <h2>Безопасность</h2>
-        <p>Встроенные средства:</p>
         <ul>
             <li>Docker-контейнеры минимальны</li>
             <li>Docker-контейнеры выполняют специфическую задачу</li>
@@ -360,12 +358,17 @@ COPY --from=build /app/build /usr/share/nginx/html
             <li>Подлинность образов Docker</li>
             <li>Злоупотребление ресурсами</li>
             <li>Учетные данные и секреты Docker</li>
-            <li>Мониторинг безопасности Docker во время выполнения</li>
+            <li>Мониторинг работы</li>
         </ul>
+        <img class="place center right" height="60%" src="pictures/security_meme.jpg" alt="security meme">
     </section>
 
     <section class="slide" id="29">
         <h2 class="shout shrink">Спасибо за внимание!</h2>
+    </section>
+
+    <section class="slide" id="30">
+        <h2 class="shout shrink">Q & A</h2>
     </section>
 
     <footer class="badge">
